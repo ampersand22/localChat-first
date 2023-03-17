@@ -2,13 +2,10 @@ Issues.
 1. Hard time finding best way to use GraphQL.
 2. Found Next.js, MERN stack with google auth guide.
 3. had to add binaryTargets into prisma schema
-4. Next/babel error - 
-    - go to eslintric.json and put
-        {
-            "extends": ["next/babel","next/core-web-vitals"]
-        }
-5. 
-
+4. Fix babel with 
+    {
+        "extends": ["next/babel", "next/core-web-vitals"]
+    }
 
 
 
