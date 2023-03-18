@@ -6,18 +6,20 @@ import Chat from "../components/Chat/Chat";
 import Auth from "../components/Auth/Auth";
 import { Session } from 'next-auth';
 
-
-
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  const { data } = useSession();
+  const { data: session } = useSession();
 
-  console.log("Here is data", data);
+  const reloadSession = () => { 
+    
+  }
+
+  console.log("Here is data", session);
 
   return  (
     <Box>
-      {data?.user ? <Chat /> : <Auth />}
+      {session?.user?.username ? <Chat /> : <Auth session={session} reloadSession={reloadSession} />}
     </Box>
   );
 };
