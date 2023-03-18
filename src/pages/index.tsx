@@ -1,7 +1,12 @@
-import type { NextPage } from "next";
-import { Inter } from 'next/font/google'
-// streamlines sign and useSession hook
-import { signIn, signOut, useSession } from "next-auth/react";
+import type { NextPage, NextPageContext } from "next";
+import { Inter } from 'next/font/google';
+import { Box } from "@chakra-ui/react";
+import { getSession, signIn, signOut, useSession } from "next-auth/react";
+import Chat from "../components/Chat/Chat";
+import Auth from "../components/Auth/Auth";
+import { Session } from 'next-auth';
+
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -10,17 +15,21 @@ export default function Home() {
 
   console.log("Here is data", data);
 
-  return (
-    // signIn is a next-auth function
-    // use control + spacebar to view autocomplete 
-    <div>
-      {data?.user ? (
-      <button onClick={() => signOut()}>Sign Out</button>
-      ) : (
-      <button onClick={() => signIn("google")}>Sign In</button>
-      )}
-      
-      {data?.user?.name}
-    </div>
-  )
+  return  (
+    <Box>
+      {data?.user ? <Chat /> : <Auth />}
+    </Box>
+  );
+};
+
+// need to have serversideProps to help with rendering
+// make sure to use context and return object with props
+export async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession(context)
+
+  return {
+    props: {
+      session,
+    },
+  };
 }
