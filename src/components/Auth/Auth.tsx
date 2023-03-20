@@ -2,11 +2,15 @@ import { signIn } from "next-auth/react";
 import { Button, Center, Image, Input, Stack, Text } from "@chakra-ui/react";
 import { Session } from "next-auth";
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import UserOperations from '../../graphql/operations/user';
+import { CreateUsernameData, CreateUsernameVariables } from "@/src/util/types";
 
 interface IAuthProps {
     session: Session | null;
     reloadSession: () => void;
 }
+
 
 const Auth: React.FC<IAuthProps> = ({
     session,
@@ -14,12 +18,26 @@ const Auth: React.FC<IAuthProps> = ({
 }) => {
     const [username, setUsername] = useState("");
 
+        // first value is  mutation function createUsername
+        // second is object with data loading and error
+        // inside angles, return two types, first is type of data we want back, second is type of variables
+        // ref interface CreateUsername above
+    const [createUsername, { data, loading, error } ] = useMutation<
+        CreateUsernameData, 
+        CreateUsernameVariables
+    >(UserOperations.Mutations.createUsername)
+
+    console.log('Here is user Data', data, loading, error)
+
     // async function will communicate with backend
     // use graphql mutation (used to create, update or delete resources)
     // and here we are updating user resource
     const onSubmit = async () => {
+        // check to make sure user put input
+        if (!username) return;
         try {
             // createUsername mutation to send our username to GraphQL API
+            await createUsername({ variables: { username } })
         } catch (error) {
             console.log("onSubmit error", error); 
         }
