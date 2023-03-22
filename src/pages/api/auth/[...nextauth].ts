@@ -1,3 +1,4 @@
+// this is the next-auth api endpoint file
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
@@ -17,4 +18,13 @@ export default NextAuth({
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    async session({ session, token, user }) {
+      // Send properties to the client, like an access_token and user id from a provider.
+      console.log("INSIDE OF SESSION CALLBACK")
+      
+      // creating user object that has session and user properties
+      return { ...session, user: { ...session.user, ...user } };
+    }
+  }
 })

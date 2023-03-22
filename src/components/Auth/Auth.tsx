@@ -38,6 +38,7 @@ const Auth: React.FC<IAuthProps> = ({
         try {
             // createUsername mutation to send our username to GraphQL API
             await createUsername({ variables: { username } })
+            reloadSession();
         } catch (error) {
             console.log("onSubmit error", error); 
         }
