@@ -22,7 +22,6 @@ export default NextAuth({
     async session({ session, token, user }) {
       // Send properties to the client, like an access_token and user id from a provider.
       console.log("INSIDE OF SESSION CALLBACK")
-      
       // creating user object that has session and user properties
       return { ...session, user: { ...session.user, ...user } };
     }

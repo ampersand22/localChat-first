@@ -12,13 +12,16 @@ export default function Home() {
   const { data: session } = useSession();
 
   const reloadSession = () => { 
-    
+    // this is used to refetch session after reload update.
+    const event = new Event("visibilitychange");
+    document.dispatchEvent(event);
   }
 
   console.log("Here is data", session);
 
   return  (
     <Box>
+      {session?.user.username}
       {session?.user?.username ? <Chat /> : <Auth session={session} reloadSession={reloadSession} />}
     </Box>
   );
