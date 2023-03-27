@@ -2,7 +2,16 @@
 import { gql } from "@apollo/client";
 
 export default {
-  Queries: {},
+  Queries: {
+    searchUsers: gql`
+      query SearchUsers($username: String!) {
+        searchUsers(username: $username) {
+          id
+          username
+        }
+      }
+    `
+  },
   Mutations: {
     //will map to graphql query string
     // $ - declares type, ! - indicate its mandatory
