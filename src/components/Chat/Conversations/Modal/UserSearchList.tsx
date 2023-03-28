@@ -5,11 +5,13 @@ import { Avatar, Button, Flex, Stack, Text } from "@chakra-ui/react";
 
 interface UserSearchListProps {
   users: Array<SearchedUser>
+  participants: Array<SearchedUser>;
   addParticipant:(user: SearchedUser) => void;
 }
 
 const UserSearchList: React.FC<UserSearchListProps> = ({ 
   users,
+  participants,
   addParticipant, 
 }) => {
   return (
