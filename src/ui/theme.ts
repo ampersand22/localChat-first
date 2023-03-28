@@ -10,11 +10,11 @@ export const theme = extendTheme(
     {
         colors: {
             brand: {
-                100: "#",
-                900: "#1a202c",
                 primary: '#4d3227',
                 secondary: '#ebc999',
                 tertiary: '#cd7700',
+                platinum: "#cfdbd5",
+                lightGray: "f7f0f5"
             },
         },
         styles: {
