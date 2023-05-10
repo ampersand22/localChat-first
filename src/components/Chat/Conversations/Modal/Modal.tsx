@@ -15,6 +15,7 @@ import Participants from "./Participants";
 import UserSearchList from "./UserSearchList";
 import { Session } from "next-auth";
 import { useRouter } from "next/router";
+import React from "react";
 
 interface ModalProps {
   session: Session;
@@ -27,7 +28,8 @@ const ConversationModal: React.FC<ModalProps> = ({
   isOpen, 
   onClose
  }) => {
-  const { user: { id: userId },} = session;
+  const { user: { id: userId },
+  } = session;
 
   const router = useRouter();
 
@@ -173,11 +175,13 @@ const ConversationModal: React.FC<ModalProps> = ({
   // }
 
 
+
+
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent bg="#faf3dd" pb={4}>
+        
           <ModalHeader>Find User</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -220,7 +224,7 @@ const ConversationModal: React.FC<ModalProps> = ({
               </>
             )}
           </ModalBody>
-        </ModalContent>
+          
       </Modal>
     </>
   )
