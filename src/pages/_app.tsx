@@ -5,6 +5,7 @@ import { theme } from '../ui/theme';
 import { ApolloProvider } from '@apollo/client';
 import { client } from '../graphql/apollo-client';
 import { Toaster } from 'react-hot-toast';
+// import '../styles/global.css';
 
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (

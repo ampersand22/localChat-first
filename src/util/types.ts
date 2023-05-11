@@ -1,5 +1,5 @@
 // import from backend
-// import { conversationPopulated } from '../../../ring-backend/src/util/types'; 
+import { ConversationPopulated } from '../../../ring-backend/src/util/types'; 
  
  /*
  * Users
@@ -32,9 +32,9 @@ export interface SearchedUser {
 /***
  * Conversations
  */
-// export interface ConversationsData {
-//   conversations: Array<ConversationPopulated>
-// }
+export interface ConversationsData {
+  conversations: Array<ConversationPopulated>
+}
 
 export interface CreateConversationData {
   createConversation: {

@@ -181,7 +181,7 @@ const ConversationModal: React.FC<ModalProps> = ({
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        
+        <ModalContent>
           <ModalHeader>Find User</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -224,7 +224,7 @@ const ConversationModal: React.FC<ModalProps> = ({
               </>
             )}
           </ModalBody>
-          
+          </ModalContent>
       </Modal>
     </>
   )
