@@ -8,6 +8,8 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { ConversationPopulated } from "../../../../../ring-backend/src/util/types";
+import { useState } from "react";
 // import { formatRelative } from "date-fns";
 // import enUS from "date-fns/locale/en-US";
 // import React, { useState } from "react";
@@ -16,7 +18,7 @@ import {
 // import { BiLogOut } from "react-icons/bi";
 // import { AiOutlineEdit } from "react-icons/ai";
 // import { formatUsernames } from "../../../util/functions";
-// import { ConversationPopulated } from "../../../../../backend/src/util/types";
+
 
 // const formatRelativeLocale = {
 //   lastWeek: "eeee",
@@ -25,18 +27,18 @@ import {
 //   other: "MM/dd/yy",
 // };
 
-// interface ConversationItemProps {
-//   userId: string;
-//   conversation: ConversationPopulated;
-//   onClick: () => void;
-//   onEditConversation?: () => void;
-//   hasSeenLatestMessage?: boolean;
-//   selectedConversationId?: string;
-//   onDeleteConversation?: (conversationId: string) => void;
-//   onLeaveConversation?: (conversation: ConversationPopulated) => void;
-// }
+interface ConversationItemProps {
+  // userId: string;
+  conversation: ConversationPopulated;
+  // onClick: () => void;
+  // onEditConversation?: () => void;
+  // hasSeenLatestMessage?: boolean;
+  // selectedConversationId?: string;
+  // onDeleteConversation?: (conversationId: string) => void;
+  // onLeaveConversation?: (conversation: ConversationPopulated) => void;
+}
 
-// const ConversationItem: React.FC<ConversationItemProps> = ({
+const ConversationItem: React.FC<ConversationItemProps> = ({
 //   userId,
 //   conversation,
 //   selectedConversationId,
@@ -45,8 +47,9 @@ import {
 //   onEditConversation,
 //   onDeleteConversation,
 //   onLeaveConversation,
-// }) => {
-//   const [menuOpen, setMenuOpen] = useState(false);
+  conversation
+}) => {
+  const [menuOpen, setMenuOpen] = useState(false);
 
 //   const handleClick = (event: React.MouseEvent) => {
 //     if (event.type === "click") {
@@ -59,6 +62,21 @@ import {
 
 //   const showMenu =
 //     onEditConversation && onDeleteConversation && onLeaveConversation;
+
+
+/**?
+ * TEMP RETURN
+ */
+
+  return (
+    <Stack p={4} _hover={{ bg: 'whiteAlpha.200'}} borderRadius={4}>
+      <Text>
+        {conversation.id}
+      </Text>
+    </Stack>
+  )
+
+
 
 //   return (
 //     <Stack
@@ -155,5 +173,5 @@ import {
 //       </Flex>
 //     </Stack>
 //   );
-// };
-// export default ConversationItem;
+};
+export default ConversationItem;

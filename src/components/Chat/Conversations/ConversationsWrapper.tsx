@@ -34,7 +34,7 @@ const ConversationsWrapper:React.FC<ConservationsWrapperProps> = ({
     px={3}
     >
       {/* Skeleton Loader */}
-      <ConversationsList session={session} />
+      <ConversationsList session={session} conversations={conversationsData?.conversations || [] } />
     </Box>
   );
 };
