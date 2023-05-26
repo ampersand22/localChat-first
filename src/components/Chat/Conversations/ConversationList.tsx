@@ -4,20 +4,27 @@ import { useState } from "react";
 import ConversationModal from './Modal/Modal';
 import { ConversationPopulated } from "../../../../../ring-backend/src/util/types";
 import ConversationItem from "./ConversationItem";
+import { useRouter } from "next/router";
 
 interface ConservationsListProps {
   session: Session;
   conversations: Array<ConversationPopulated>;
+  onViewConversation: (conversationId: string) => void;
 }
 
 const ConversationsList:React.FC<ConservationsListProps> = ({ 
   session, 
-  conversations 
+  conversations,
+  onViewConversation 
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const onOpen = () => setIsOpen(true);
   const onClose = () => setIsOpen(false);
+
+
+  const router = useRouter();
+  const { user: { id: userId },} = session;
 
   return (
     <Box width="100%">
@@ -30,13 +37,19 @@ const ConversationsList:React.FC<ConservationsListProps> = ({
       cursor="pointer"
       onClick={onOpen}
       >
-        <Text textAlign='center' color="whiteAlpha.800" fontWeight={500}>
+        <Text align='center' color="whiteAlpha.800" fontWeight='bold'>
           Find or start a conversation
         </Text>
       </Box>
       <ConversationModal session={session} isOpen={isOpen} onClose={onClose}/>
       {conversations.map((conversation) => (
-        <ConversationItem key={conversation.id} conversation={conversation} />
+        <ConversationItem 
+          key={conversation.id} 
+          userId={userId}
+          conversation={conversation} 
+          onClick={() => onViewConversation(conversation.id)} 
+          isSelected={conversation.id === router.query.conversationId}
+        />
       ))}
     </Box>
   );

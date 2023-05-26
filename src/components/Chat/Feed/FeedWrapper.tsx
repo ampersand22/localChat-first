@@ -2,32 +2,30 @@ import conversation from "@/src/graphql/operations/conversation";
 import { Flex } from "@chakra-ui/react";
 import { Session } from "next-auth";
 import { useRouter } from "next/router";
+import MessagesHeader from "./Messages/Header";
+import MessageInput from "./Messages/Input";
+import Messages from "./Messages/Messages";
+import NoConversation from "./NoConversationSelected";
 
 interface FeedWrapperProps {
   session: Session;
 }
 
-const FeedWrapper:React.FC<FeedWrapperProps> = ({ session }) => {
-
+const FeedWrapper: React.FC<FeedWrapperProps> = ({ session }) => {
   const router = useRouter();
 
   const { conversationId } = router.query;
-
-  // display/base is for mobile screens and wont display on them
+  const {
+    user: { id: userId },
+  } = session;
 
   return (
     <Flex
       display={{ base: conversationId ? "flex" : "none", md: "flex" }}
-      direction="column"
       width="100%"
+      direction="column"
     >
-      {conversationId ? (
-        <Flex>{conversationId}</Flex>
-      ) : (
-        <div>No Convo Selected</div>
-      )}
-
-      {/* {conversationId && typeof conversationId === "string" ? (
+      {conversationId && typeof conversationId === "string" ? (
         <>
           <Flex
             direction="column"
@@ -35,23 +33,15 @@ const FeedWrapper:React.FC<FeedWrapperProps> = ({ session }) => {
             overflow="hidden"
             flexGrow={1}
           >
-            <MessagesHeader
-              userId={session.user.id}
-              conversationId={conversationId}
-            />
-            <Messages
-              userId={session.user.id}
-              conversationId={conversationId}
-            />
+            <MessagesHeader userId={userId} conversationId={conversationId} />
+            {/* <Messages userId={userId} conversationId={conversationId} /> */}
           </Flex>
-          <MessageInput session={session} conversationId={conversationId} />
+          {/* <MessageInput session={session} conversationId={conversationId} /> */}
         </>
       ) : (
-        <NoConversationSelected />
-      )} */}
+        <NoConversation />
+      )}
     </Flex>
   );
 };
-
-
 export default FeedWrapper;
