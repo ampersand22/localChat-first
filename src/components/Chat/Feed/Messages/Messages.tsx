@@ -9,7 +9,7 @@ import MessageOperations, {
   MessageFields,
 } from "../../../../graphql/operations/message";
 import toast from "react-hot-toast";
-import SkeletonLoader from "../../../common/SkeletonLoader";
+// import SkeletonLoader from "../../../common/SkeletonLoader";
 import { useEffect } from "react";
 import MessageItem from "./MessageItem";
 
@@ -66,7 +66,7 @@ const Messages: React.FC<MessagesProps> = ({ userId, conversationId }) => {
     <Flex direction="column" justify="flex-end" overflow="hidden">
       {loading && (
         <Stack spacing={4} px={4}>
-          <SkeletonLoader count={4} height="60px" />
+          {/* <SkeletonLoader count={4} height="60px" /> */}
         </Stack>
       )}
       {data?.messages && (

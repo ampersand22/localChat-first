@@ -67,8 +67,8 @@ import {
 //       p={4}
 //       cursor="pointer"
 //       borderRadius={4}
-//       bg={isSelected ? "whiteAlpha.200" : "none"}
-//       _hover={{ bg: "whiteAlpha.200" }}
+//       bg={isSelected ? "gray.200" : "none"}
+//       _hover={{ bg: "gray.200" }}
 //       onClick={handleClick}
 //       onContextMenu={handleClick}
 //       position="relative"
@@ -126,7 +126,7 @@ import {
 //           {conversation.latestMessage && (
 //             <Box width="140%">
 //               <Text
-//                 color="whiteAlpha.700"
+//                 color="gray.700"
 //                 whiteSpace="nowrap"
 //                 overflow="hidden"
 //                 textOverflow="ellipsis"
@@ -136,7 +136,7 @@ import {
 //             </Box>
 //           )}
 //         </Flex>
-//         <Text color="whiteAlpha.700" textAlign="right">
+//         <Text color="gray.700" textAlign="right">
 //           {formatRelative(conversation.updatedAt, new Date(), {
 //             locale: {
 //               ...enUS,

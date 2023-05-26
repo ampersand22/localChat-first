@@ -32,9 +32,9 @@ interface ConversationItemProps {
   isSelected: boolean;
   hasSeenLatestMessage: boolean | undefined;
   onDeleteConversation: (conversationId: string) => void;
-  //   onEditConversation?: () => void;
-  //   hasSeenLatestMessage?: boolean;
-  //   selectedConversationId?: string;
+  onEditConversation?: () => void;
+  // hasSeenLatestMessage?: boolean;
+  selectedConversationId?: string;
   //   onLeaveConversation?: (conversation: ConversationPopulated) => void;
 }
 
@@ -45,7 +45,7 @@ const ConversationItem: React.FC<ConversationItemProps> = ({
   isSelected,
   hasSeenLatestMessage,
   onDeleteConversation,
-  //   selectedConversationId,
+    selectedConversationId,
   //   onEditConversation,
   //   onLeaveConversation,
 }) => {
@@ -60,20 +60,16 @@ const ConversationItem: React.FC<ConversationItemProps> = ({
     }
   };
 
-  // return (
-  //   <div>convoitem</div>
-  // )
-
   return (
-    <Box
-      flexDirection="row"
-      alignItems="center"
-      justifyContent="space-between"
+    <Stack
+      direction="row"
+      align="center"
+      justify="space-between"
       p={4}
       cursor="pointer"
       borderRadius={4}
-      bg={isSelected ? "whiteAlpha.200" : "none"}
-      _hover={{ bg: "whiteAlpha.200" }}
+      bg={isSelected ? "gray.200" : "none"}
+      _hover={{ bg: "gray.200" }}
       onClick={handleClick}
       onContextMenu={handleClick}
       position="relative"
@@ -87,7 +83,7 @@ const ConversationItem: React.FC<ConversationItemProps> = ({
               //   onEditConversation();
             }}
             bg="#2d2d2d"
-            _hover={{ bg: "whiteAlpha.300" }}
+            _hover={{ bg: "gray.300" }}
           >
             Edit
           </MenuItem>
@@ -98,7 +94,7 @@ const ConversationItem: React.FC<ConversationItemProps> = ({
               onDeleteConversation(conversation.id);
             }}
             bg="#2d2d2d"
-            _hover={{ bg: "whiteAlpha.300" }}
+            _hover={{ bg: "gray.300" }}
           >
             Delete
           </MenuItem>
@@ -125,11 +121,11 @@ const ConversationItem: React.FC<ConversationItemProps> = ({
           )} */}
         </MenuList>
       </Menu>
-      <Box position="absolute" left="-6px">
+      <Flex position="absolute" left="-6px">
         {hasSeenLatestMessage === false && (
           <GoPrimitiveDot fontSize={18} color="#6B46C1" />
         )}
-      </Box>
+      </Flex>
       <Avatar />
       <Flex justify="space-between" width="80%" height="100%">
         <Flex direction="column" width="70%" height="100%">
@@ -171,7 +167,7 @@ const ConversationItem: React.FC<ConversationItemProps> = ({
           })}
         </Text>
       </Flex>
-    </Box>
+    </Stack>
   );
 };
 export default ConversationItem;

@@ -17,7 +17,7 @@ const MessagesHeader: React.FC<MessagesHeaderProps> = ({
   conversationId,
 }) => {
   const router = useRouter();
-  const { data, loading } = useQuery<ConversationsData, null>(
+  const { data, loading } = useQuery<ConversationsData>(
     // removed null from CoversationsData : null in line 20
     ConversationOperations.Queries.conversations
   );

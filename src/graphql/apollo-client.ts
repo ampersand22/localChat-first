@@ -1,10 +1,9 @@
-import { ApolloClient, HttpLink, InMemoryCache, split } from '@apollo/client';
+import { ApolloClient, HttpLink, InMemoryCache, split } from "@apollo/client";
 import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { getMainDefinition } from "@apollo/client/utilities";
 import { createClient } from "graphql-ws";
 import { getSession } from "next-auth/react";
 
-// make sure we are in the browser. Install graphql-ws
 const wsLink =
   typeof window !== "undefined"
     ? new GraphQLWsLink(
@@ -17,9 +16,8 @@ const wsLink =
       )
     : null;
 
-// this makes graphql endpoint to send http request
 const httpLink = new HttpLink({
-  uri: 'http://localhost:4000/graphql',
+  uri: "http://localhost:4000/graphql",
   credentials: "include",
 });
 
@@ -34,12 +32,11 @@ const link =
           );
         },
         wsLink,
-        httpLink,
+        httpLink
       )
     : httpLink;
 
 export const client = new ApolloClient({
   link,
   cache: new InMemoryCache(),
-  // Apollo has built in cache
 });

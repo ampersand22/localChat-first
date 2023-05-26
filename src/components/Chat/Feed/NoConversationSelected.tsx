@@ -6,7 +6,8 @@ import ConversationOperations from "../../../graphql/operations/conversation";
 import { useQuery } from "@apollo/client";
 
 const NoConversation: React.FC = () => {
-  const { data, loading, error } = useQuery<ConversationsData, null>(
+  const { data, loading, error } = useQuery<ConversationsData>(
+    // removed ( , null ) from useQuery after ConversationsData d/t error
     ConversationOperations.Queries.conversations
   );
 

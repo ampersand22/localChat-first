@@ -4,7 +4,7 @@ import { Session } from "next-auth";
 import React, { useState } from "react";
 // import { ObjectID } from "bson";
 import toast from "react-hot-toast";
-import { SendMessageArguments } from "../../../../../../backend/src/util/types";
+import { SendMessageArguments } from "../../../../../../ring-backend/src/util/types";
 import MessageOperations from "../../../../graphql/operations/message";
 import { MessagesData } from "../../../../util/types";
 
@@ -99,7 +99,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
           _focus={{
             boxShadow: "none",
             border: "1px solid",
-            borderColor: "whiteAlpha.300",
+            borderColor: "gray.300",
           }}
         />
       </form>
